@@ -1,7 +1,9 @@
 package com.example.timmygunja.controller;
 
 
+import com.example.timmygunja.entity.CarBrand;
 import com.example.timmygunja.entity.CarModel;
+import com.example.timmygunja.service.CarBrandService;
 import com.example.timmygunja.service.CarModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +18,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class CarModelController {
     private final CarModelService carModelService;
+    private final CarBrandService carBrandService;
 
     @Autowired
-    public CarModelController(CarModelService employeeService) {
+    public CarModelController(CarModelService employeeService, CarBrandService carBrandService) {
         this.carModelService = employeeService;
+        this.carBrandService = carBrandService;
     }
 
     @PostMapping(value = "/car-models")
@@ -27,6 +31,14 @@ public class CarModelController {
         carModelService.create(carModel);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+//    @PostMapping(value = "/car-models/{id}/{carBrandId}")
+//    public ResponseEntity<?> setCarBrand(@PathVariable(name = "id") Long carModelId, @PathVariable(name = "id") Long carBrandId) {
+//        CarModel carModel = carModelService.find(carModelId);
+//        CarBrand carBrand = carBrandService.find(carBrandId);
+//        carModelService.setCarBrand(carModel, carBrand);
+//        return new ResponseEntity<>(HttpStatus.CREATED);
+//    }
 
     @GetMapping(value = "/car-models")
     public ResponseEntity<List<CarModel>> findAll() {

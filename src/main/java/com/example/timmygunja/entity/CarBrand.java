@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.awt.*;
+import java.util.List;
 import java.util.Set;
 
 
@@ -21,6 +22,6 @@ public class CarBrand {
     private String description;
     private String image;
 
-//    @OneToMany(mappedBy="carbrand")
-//    private Set<CarModel> carModelSet;
+    @OneToMany()
+    private List<CarModel> carModelList;
 }
