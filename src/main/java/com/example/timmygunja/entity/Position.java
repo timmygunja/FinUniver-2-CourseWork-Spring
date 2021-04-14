@@ -10,43 +10,43 @@ import java.util.Objects;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "CARMODEL")
-public class CarModel {
+@Table(name = "POSITION")
+public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
     private String description;
-    private String image;
+    private String salary;
 
-    @ManyToOne
-    @JoinColumn(name="CARBRAND_ID")
-    private CarBrand carBrand;
+    @OneToOne
+    @JoinColumn(name="EMPLOYEE_ID")
+    private Employee employee;
 
-//    private CarModel() {}
 
-    public CarModel(String name, String description, String image, CarBrand carBrand) {
+    public Position(String name, String description, String salary, Employee employee) {
         this.name = name;
         this.description = description;
-        this.image = image;
-        this.carBrand = carBrand;
+        this.salary = salary;
+        this.employee = employee;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CarModel carModel = (CarModel) o;
-        return Objects.equals(id, carModel.id) &&
-                Objects.equals(name, carModel.name) &&
-                Objects.equals(description, carModel.description) &&
-                Objects.equals(image, carModel.image);
+        Position position = (Position) o;
+        return Objects.equals(id, position.id) &&
+                Objects.equals(name, position.name) &&
+                Objects.equals(description, position.description) &&
+                Objects.equals(salary, position.salary) &&
+                Objects.equals(employee, position.employee);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, image, carBrand);
+        return Objects.hash(id, name, description, salary, employee);
     }
 
     public Long getId() {
@@ -73,20 +73,20 @@ public class CarModel {
         this.description = description;
     }
 
-    public String getImage() {
-        return image;
+    public String getSalary() {
+        return salary;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setSalary(String salary) {
+        this.salary = salary;
     }
 
-    public CarBrand getCarBrand() {
-        return carBrand;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setCarBrand(CarBrand carBrand) {
-        this.carBrand = carBrand;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override
@@ -95,7 +95,8 @@ public class CarModel {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", image='" + image + '\'' +
+                ", salary='" + salary + '\'' +
+                ", employee='" + employee + '\'' +
                 '}';
     }
 }

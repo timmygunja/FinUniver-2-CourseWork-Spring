@@ -10,43 +10,42 @@ import java.util.Objects;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "CARMODEL")
-public class CarModel {
+@Table(name = "CAR")
+public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String plateNumber;
     private String description;
     private String image;
 
     @ManyToOne
-    @JoinColumn(name="CARBRAND_ID")
-    private CarBrand carBrand;
+    @JoinColumn(name="CARMODEL_ID")
+    private CarModel carModel;
 
-//    private CarModel() {}
 
-    public CarModel(String name, String description, String image, CarBrand carBrand) {
-        this.name = name;
+    public Car(String plateNumber, String description, String image, CarModel carModel) {
+        this.plateNumber = plateNumber;
         this.description = description;
         this.image = image;
-        this.carBrand = carBrand;
+        this.carModel = carModel;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CarModel carModel = (CarModel) o;
-        return Objects.equals(id, carModel.id) &&
-                Objects.equals(name, carModel.name) &&
-                Objects.equals(description, carModel.description) &&
-                Objects.equals(image, carModel.image);
+        Car car = (Car) o;
+        return Objects.equals(id, car.id) &&
+                Objects.equals(plateNumber, car.plateNumber) &&
+                Objects.equals(description, car.description) &&
+                Objects.equals(image, car.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, image, carBrand);
+        return Objects.hash(id, plateNumber, description, image, carModel);
     }
 
     public Long getId() {
@@ -57,12 +56,12 @@ public class CarModel {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPlateNumber() {
+        return plateNumber;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
 
     public String getDescription() {
@@ -81,19 +80,19 @@ public class CarModel {
         this.image = image;
     }
 
-    public CarBrand getCarBrand() {
-        return carBrand;
+    public CarModel getCarModel() {
+        return carModel;
     }
 
-    public void setCarBrand(CarBrand carBrand) {
-        this.carBrand = carBrand;
+    public void setCarModel(CarModel carModel) {
+        this.carModel = carModel;
     }
 
     @Override
     public String toString() {
         return "CarModel{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", plateNumber='" + plateNumber + '\'' +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
                 '}';

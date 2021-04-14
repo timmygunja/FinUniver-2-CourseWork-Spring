@@ -20,6 +20,10 @@ public class Employee {
     private String contact;
     private String login;
     private String password;
-    private Integer position;
-    private Integer privilege;
+
+    @OneToOne()
+    private Position position;
+
+    @OneToOne()
+    private Privilege privilege;
 }
