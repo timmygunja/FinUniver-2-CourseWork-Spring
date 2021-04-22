@@ -1,6 +1,7 @@
 package com.example.timmygunja.service;
 
 
+import com.example.timmygunja.entity.Position;
 import com.example.timmygunja.entity.Privilege;
 import com.example.timmygunja.repository.PrivilegeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,11 @@ public class PrivilegeService {
     @Autowired
     private PrivilegeRepository privilegeRepository;
 
-    public void create(Privilege privilege) {
+    public void save(Privilege privilege) {
         privilegeRepository.save(privilege);
     }
+
+    public void delete(Privilege privilege) { privilegeRepository.delete(privilege);}
 
     public List<Privilege> findAll() {
         return privilegeRepository.findAll();

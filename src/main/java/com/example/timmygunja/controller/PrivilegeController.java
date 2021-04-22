@@ -1,6 +1,7 @@
 package com.example.timmygunja.controller;
 
 
+import com.example.timmygunja.entity.Position;
 import com.example.timmygunja.entity.Privilege;
 import com.example.timmygunja.service.PrivilegeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,24 @@ public class PrivilegeController {
 
     @PostMapping(value = "/privileges")
     public ResponseEntity<?> create(@RequestBody Privilege privilege) {
-        privilegeService.create(privilege);
+        privilegeService.save(privilege);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "/privileges")
+    public ResponseEntity<?> update(@RequestBody Privilege newPrivilege) {
+        Privilege privilege = privilegeService.find(newPrivilege.getId());
+        privilege.setName(newPrivilege.getName());
+//        position.setEmployee(newPosition.getEmployee());
+        privilegeService.save(privilege);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/privileges/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        Privilege privilege = privilegeService.find(id);
+        privilegeService.delete(privilege);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping(value = "/privileges")
