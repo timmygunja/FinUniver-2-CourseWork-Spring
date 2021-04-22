@@ -69,7 +69,7 @@ public class Privilege {
 
     @Override
     public String toString() {
-        return "CarModel{" +
+        return "Privilege{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", employee='" + employee + '\'' +

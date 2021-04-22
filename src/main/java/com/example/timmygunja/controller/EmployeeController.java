@@ -3,6 +3,8 @@ package com.example.timmygunja.controller;
 
 import com.example.timmygunja.entity.Employee;
 import com.example.timmygunja.service.EmployeeService;
+import com.example.timmygunja.service.PositionService;
+import com.example.timmygunja.service.PrivilegeService;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,17 +13,22 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// git check 2
 @RestController
 @JsonAutoDetect
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
     private final EmployeeService employeeService;
+    private final PositionService positionService;
+    private final PrivilegeService privilegeService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService,
+                              PositionService positionService,
+                              PrivilegeService privilegeService) {
         this.employeeService = employeeService;
+        this.positionService = positionService;
+        this.privilegeService = privilegeService;
     }
 
     @PostMapping(value = "/employees")
@@ -39,7 +46,8 @@ public class EmployeeController {
         employee.setLogin(newEmployee.getLogin());
         employee.setPassword(newEmployee.getPassword());
         employee.setPosition(newEmployee.getPosition());
-        employee.setPrivilege(newEmployee.getPrivilege());
+//        employee.setPosition(positionService.find(Long.parseLong(String.valueOf(newEmployee.getPosition()))));
+//        employee.setPrivilege(newEmployee.getPrivilege());
         employeeService.save(employee);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

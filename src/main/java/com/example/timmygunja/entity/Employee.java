@@ -1,7 +1,14 @@
 package com.example.timmygunja.entity;
 
+import com.example.timmygunja.service.PositionService;
+import com.example.timmygunja.service.PrivilegeService;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,6 +17,7 @@ import java.util.Objects;
 @Entity
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "EMPLOYEE")
 public class Employee {
     @Id
@@ -28,8 +36,7 @@ public class Employee {
     @OneToOne()
     private Privilege privilege;
 
-
-    public Employee(String name, String surname, String contact, String login,
+        public Employee(String name, String surname, String contact, String login,
                     String password, Position position, Privilege privilege) {
         this.name = name;
         this.surname = surname;
@@ -39,6 +46,12 @@ public class Employee {
         this.position = position;
         this.privilege = privilege;
     }
+
+//    @JsonProperty("position_id")
+//    private void unpackNested(String position_id) {
+//        this.position = new Position();
+//        position.setId(Long.parseLong(position_id));
+//    }
 
     public Long getId() {
         return id;
@@ -86,21 +99,13 @@ public class Employee {
         this.password = password;
     }
 
-    public Position getPosition() {
-        return position;
-    }
+    public Position getPosition() { return position; }
 
-    public void setPosition(Position position) {
-        this.position = position;
-    }
+    public void setPosition(Position position) { this.position = position; }
 
-    public Privilege getPrivilege() {
-        return privilege;
-    }
+    public Privilege getPrivilege() { return privilege; }
 
-    public void setPrivilege(Privilege privilege) {
-        this.privilege = privilege;
-    }
+    public void setPrivilege(Privilege privilege) { this.privilege = privilege; }
 
     @Override
     public String toString() {

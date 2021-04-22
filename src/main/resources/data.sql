@@ -1,13 +1,13 @@
 INSERT INTO position(name, description, salary, employee_id)
-VALUES ('head', 'manager', '50000', null),
-       ('mechanic', 'worker', '35000', null);
+VALUES  ('mechanic', 'worker', '35000', null),
+        ('manager', 'head', '50000', null);
 
 INSERT INTO privilege(name, employee_id)
-VALUES ('admin', null),
-       ('user', null);
+VALUES ('user', null),
+       ('admin', null);
 
-INSERT INTO employee(name, surname, contact, login, password)
-VALUES ('name1', 'surname1', 'phone1', 'login1', 'password1');
+INSERT INTO employee(name, surname, contact, login, password, position_id, privilege_id)
+VALUES ('name1', 'surname1', 'phone1', 'login1', 'password1', 2, 2);
 
 
 INSERT INTO carbrand(name, description, image)

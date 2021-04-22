@@ -1,6 +1,7 @@
 package com.example.timmygunja.service;
 
 
+import com.example.timmygunja.entity.Employee;
 import com.example.timmygunja.entity.Position;
 import com.example.timmygunja.repository.PositionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,11 @@ public class PositionService {
     @Autowired
     private PositionRepository positionRepository;
 
-    public void create(Position position) {
+    public void save(Position position) {
         positionRepository.save(position);
     }
+
+    public void delete(Position position) { positionRepository.delete(position);}
 
     public List<Position> findAll() {
         return positionRepository.findAll();

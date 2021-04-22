@@ -1,5 +1,6 @@
 package com.example.timmygunja.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.Objects;
 @Entity
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "POSITION")
 public class Position {
     @Id
@@ -91,7 +93,7 @@ public class Position {
 
     @Override
     public String toString() {
-        return "CarModel{" +
+        return "Position{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
