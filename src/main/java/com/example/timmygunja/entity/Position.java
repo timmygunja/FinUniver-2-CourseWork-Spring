@@ -1,10 +1,13 @@
 package com.example.timmygunja.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -22,17 +25,17 @@ public class Position {
     private String description;
     private String salary;
 
-    @OneToOne
-    @JoinColumn(name="EMPLOYEE_ID")
-    private Employee employee;
+    @OneToMany(mappedBy="position", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JsonBackReference(value = "employee-position")
+    private List<Employee> employees;
 
 
-    public Position(String name, String description, String salary, Employee employee) {
-        this.name = name;
-        this.description = description;
-        this.salary = salary;
-        this.employee = employee;
-    }
+//    public Position(String name, String description, String salary, Employee employee) {
+//        this.name = name;
+//        this.description = description;
+//        this.salary = salary;
+//        this.employee = employee;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -43,12 +46,12 @@ public class Position {
                 Objects.equals(name, position.name) &&
                 Objects.equals(description, position.description) &&
                 Objects.equals(salary, position.salary) &&
-                Objects.equals(employee, position.employee);
+                Objects.equals(employees, position.employees);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, salary, employee);
+        return Objects.hash(id, name, description, salary, employees);
     }
 
     public Long getId() {
@@ -83,12 +86,12 @@ public class Position {
         this.salary = salary;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override
@@ -98,7 +101,7 @@ public class Position {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", salary='" + salary + '\'' +
-                ", employee='" + employee + '\'' +
+                ", employee='" + employees + '\'' +
                 '}';
     }
 }

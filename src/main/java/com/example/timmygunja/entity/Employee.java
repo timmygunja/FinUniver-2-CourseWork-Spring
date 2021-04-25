@@ -1,17 +1,12 @@
 package com.example.timmygunja.entity;
 
-import com.example.timmygunja.service.PositionService;
-import com.example.timmygunja.service.PrivilegeService;
-import com.fasterxml.jackson.annotation.JsonCreator;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 
 @Entity
@@ -30,28 +25,28 @@ public class Employee {
     private String login;
     private String password;
 
-    @OneToOne()
-    private Position position;
+    @ManyToOne
+//    @JoinColumn(name="position_id", referencedColumnName = "id")
+//    @JsonBackReference(value = "employee-position")
+    public Position position;
 
-    @OneToOne()
-    private Privilege privilege;
 
-        public Employee(String name, String surname, String contact, String login,
-                    String password, Position position, Privilege privilege) {
-        this.name = name;
-        this.surname = surname;
-        this.contact = contact;
-        this.login = login;
-        this.password = password;
-        this.position = position;
-        this.privilege = privilege;
-    }
+    @ManyToOne
+//    @JoinColumn(name="privilege_id", referencedColumnName = "id")
+//    @JsonBackReference(value = "employee-privilege")
+    public Privilege privilege;
 
-//    @JsonProperty("position_id")
-//    private void unpackNested(String position_id) {
-//        this.position = new Position();
-//        position.setId(Long.parseLong(position_id));
+//public Employee(String name, String surname, String contact, String login,
+//            String password, Position position, Privilege privilege) {
+//        this.name = name;
+//        this.surname = surname;
+//        this.contact = contact;
+//        this.login = login;
+//        this.password = password;
+//        this.position = position;
+//        this.privilege = privilege;
 //    }
+
 
     public Long getId() {
         return id;
@@ -115,6 +110,8 @@ public class Employee {
                 ", surname='" + surname + '\'' +
                 ", login='" + surname + '\'' +
                 ", password='" + surname + '\'' +
+                ", position='" + position + '\'' +
+                ", privilege='" + privilege + '\'' +
                 '}';
     }
 }

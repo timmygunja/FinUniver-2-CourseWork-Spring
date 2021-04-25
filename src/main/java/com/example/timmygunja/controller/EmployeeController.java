@@ -8,6 +8,7 @@ import com.example.timmygunja.service.PrivilegeService;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +38,7 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+
     @PutMapping(value = "/employees")
     public ResponseEntity<?> update(@RequestBody Employee newEmployee) {
         Employee employee = employeeService.find(newEmployee.getId());
@@ -46,8 +48,8 @@ public class EmployeeController {
         employee.setLogin(newEmployee.getLogin());
         employee.setPassword(newEmployee.getPassword());
         employee.setPosition(newEmployee.getPosition());
+        employee.setPrivilege(newEmployee.getPrivilege());
 //        employee.setPosition(positionService.find(Long.parseLong(String.valueOf(newEmployee.getPosition()))));
-//        employee.setPrivilege(newEmployee.getPrivilege());
         employeeService.save(employee);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

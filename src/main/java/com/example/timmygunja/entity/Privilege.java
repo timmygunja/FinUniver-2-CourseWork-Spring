@@ -1,9 +1,12 @@
 package com.example.timmygunja.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -18,15 +21,15 @@ public class Privilege {
 
     private String name;
 
-    @OneToOne
-    @JoinColumn(name="EMPLOYEE_ID")
-    private Employee employee;
+    @OneToMany(mappedBy="privilege", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JsonBackReference(value = "employee-privilege")
+    private List<Employee> employees;
 
 
-    public Privilege(String name, Employee employee) {
-        this.name = name;
-        this.employee = employee;
-    }
+//    public Privilege(String name, Employee employee) {
+//        this.name = name;
+//        this.employee = employee;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -35,12 +38,12 @@ public class Privilege {
         Privilege position = (Privilege) o;
         return Objects.equals(id, position.id) &&
                 Objects.equals(name, position.name) &&
-                Objects.equals(employee, position.employee);
+                Objects.equals(employees, position.employees);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, employee);
+        return Objects.hash(id, name, employees);
     }
 
     public Long getId() {
@@ -59,12 +62,12 @@ public class Privilege {
         this.name = name;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployee(List<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override
@@ -72,7 +75,7 @@ public class Privilege {
         return "Privilege{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", employee='" + employee + '\'' +
+                ", employees='" + employees + '\'' +
                 '}';
     }
 }
