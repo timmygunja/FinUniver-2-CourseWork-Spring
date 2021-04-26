@@ -2,6 +2,7 @@ package com.example.timmygunja.controller;
 
 
 import com.example.timmygunja.entity.CarBrand;
+import com.example.timmygunja.entity.Position;
 import com.example.timmygunja.service.CarBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,26 @@ public class CarBrandController {
 
     @PostMapping(value = "/car-brands")
     public ResponseEntity<?> create(@RequestBody CarBrand carBrand) {
-        carBrandService.create(carBrand);
+        carBrandService.save(carBrand);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "/car-brands")
+    public ResponseEntity<?> update(@RequestBody CarBrand newCarBrand) {
+        CarBrand carBrand = carBrandService.find(newCarBrand.getId());
+        carBrand.setName(newCarBrand.getName());
+        carBrand.setDescription(newCarBrand.getDescription());
+        carBrand.setImage(newCarBrand.getImage());
+        carBrand.setCarModelList(newCarBrand.getCarModelList());
+        carBrandService.save(carBrand);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/car-brands/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        CarBrand carBrand = carBrandService.find(id);
+        carBrandService.delete(carBrand);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping(value = "/car-brands")

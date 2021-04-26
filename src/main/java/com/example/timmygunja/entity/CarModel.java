@@ -24,14 +24,13 @@ public class CarModel {
     @JoinColumn(name="CARBRAND_ID")
     private CarBrand carBrand;
 
-//    private CarModel() {}
 
-    public CarModel(String name, String description, String image, CarBrand carBrand) {
-        this.name = name;
-        this.description = description;
-        this.image = image;
-        this.carBrand = carBrand;
-    }
+//    public CarModel(String name, String description, String image, CarBrand carBrand) {
+//        this.name = name;
+//        this.description = description;
+//        this.image = image;
+//        this.carBrand = carBrand;
+//    }
 
     @Override
     public boolean equals(Object o) {

@@ -28,17 +28,27 @@ public class CarModelController {
 
     @PostMapping(value = "/car-models")
     public ResponseEntity<?> create(@RequestBody CarModel carModel) {
-        carModelService.create(carModel);
+        carModelService.save(carModel);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-//    @PostMapping(value = "/car-models/{id}/{carBrandId}")
-//    public ResponseEntity<?> setCarBrand(@PathVariable(name = "id") Long carModelId, @PathVariable(name = "id") Long carBrandId) {
-//        CarModel carModel = carModelService.find(carModelId);
-//        CarBrand carBrand = carBrandService.find(carBrandId);
-//        carModelService.setCarBrand(carModel, carBrand);
-//        return new ResponseEntity<>(HttpStatus.CREATED);
-//    }
+    @PutMapping(value = "/car-models")
+    public ResponseEntity<?> update(@RequestBody CarModel newCarModel) {
+        CarModel carModel = carModelService.find(newCarModel.getId());
+        carModel.setName(newCarModel.getName());
+        carModel.setDescription(newCarModel.getDescription());
+        carModel.setImage(newCarModel.getImage());
+        carModel.setCarBrand(newCarModel.getCarBrand());
+        carModelService.save(carModel);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/car-models/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        CarBrand carBrand = carBrandService.find(id);
+        carBrandService.delete(carBrand);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @GetMapping(value = "/car-models")
     public ResponseEntity<List<CarModel>> findAll() {

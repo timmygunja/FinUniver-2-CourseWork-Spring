@@ -49,7 +49,6 @@ public class EmployeeController {
         employee.setPassword(newEmployee.getPassword());
         employee.setPosition(newEmployee.getPosition());
         employee.setPrivilege(newEmployee.getPrivilege());
-//        employee.setPosition(positionService.find(Long.parseLong(String.valueOf(newEmployee.getPosition()))));
         employeeService.save(employee);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

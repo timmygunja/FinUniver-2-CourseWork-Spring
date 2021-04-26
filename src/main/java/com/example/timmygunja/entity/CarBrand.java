@@ -22,6 +22,6 @@ public class CarBrand {
     private String description;
     private String image;
 
-    @OneToMany()
+    @OneToMany
     private List<CarModel> carModelList;
 }
