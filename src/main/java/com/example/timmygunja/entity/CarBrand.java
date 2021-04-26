@@ -1,5 +1,6 @@
 package com.example.timmygunja.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,6 +23,7 @@ public class CarBrand {
     private String description;
     private String image;
 
-    @OneToMany
+    @OneToMany(mappedBy="carbrand", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JsonBackReference(value = "model-brand")
     private List<CarModel> carModelList;
 }

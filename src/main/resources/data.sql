@@ -19,7 +19,7 @@ VALUES ('Mercedes', 'German company', 'image1'),
        ('Tesla', 'American newcomer', 'image3');
 
 
-INSERT INTO carmodel(name, description, image, carbrand_id)
-VALUES ('w211', 'E class car', 'image1', 1),
-       ('e60', 'Coolest sedan ever', 'image2', 2),
-       ('Model 3', 'Cheapest tesla on market', 'image1', 1),;
+INSERT INTO carmodel(name, description, carbrand_id)
+VALUES ('w211', 'E class car', 1),
+       ('e60', 'Coolest sedan ever', 2),
+       ('Model 3', 'Cheapest tesla on market', 3);

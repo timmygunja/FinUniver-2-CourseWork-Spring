@@ -37,8 +37,7 @@ public class CarModelController {
         CarModel carModel = carModelService.find(newCarModel.getId());
         carModel.setName(newCarModel.getName());
         carModel.setDescription(newCarModel.getDescription());
-        carModel.setImage(newCarModel.getImage());
-        carModel.setCarBrand(newCarModel.getCarBrand());
+        carModel.setCarbrand(newCarModel.getCarbrand());
         carModelService.save(carModel);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

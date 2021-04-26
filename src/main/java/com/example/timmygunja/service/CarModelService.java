@@ -21,8 +21,6 @@ public class CarModelService {
 
     public void delete(CarModel carModel) { carModelRepository.delete(carModel);}
 
-//    public void setCarBrand(CarModel carModel, CarBrand carBrand) { carModel.setCarBrand(carBrand); }
-
     public List<CarModel> findAll() {
         return carModelRepository.findAll();
     }
