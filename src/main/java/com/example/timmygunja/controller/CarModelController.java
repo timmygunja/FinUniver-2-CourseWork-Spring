@@ -1,7 +1,6 @@
 package com.example.timmygunja.controller;
 
 
-import com.example.timmygunja.entity.CarBrand;
 import com.example.timmygunja.entity.CarModel;
 import com.example.timmygunja.service.CarBrandService;
 import com.example.timmygunja.service.CarModelService;
@@ -44,8 +43,8 @@ public class CarModelController {
 
     @DeleteMapping(value = "/car-models/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
-        CarBrand carBrand = carBrandService.find(id);
-        carBrandService.delete(carBrand);
+        CarModel carModel = carModelService.find(id);
+        carModelService.delete(carModel);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

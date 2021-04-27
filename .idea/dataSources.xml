@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:h2:tcp://localhost:9092/default</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="FinUniver-2-CourseWork-db@localhost" uuid="8a8574e9-7b35-4db0-b04e-1cfe1b27dd3b">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/FinUniver-2-CourseWork-db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
