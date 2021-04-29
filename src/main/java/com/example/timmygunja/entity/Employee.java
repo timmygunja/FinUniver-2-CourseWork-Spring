@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -28,7 +29,10 @@ public class Employee {
     @ManyToOne
     public Position position;
 
-
     @ManyToOne
     public Privilege privilege;
+
+    @OneToMany(mappedBy="employee", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JsonBackReference(value = "order-employee")
+    private List<Order> orderList;
 }

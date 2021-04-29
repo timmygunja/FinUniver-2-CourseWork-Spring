@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 
 @Entity
@@ -21,9 +20,13 @@ public class Car {
     private String plateNumber;
     private String description;
 
-    @OneToOne
-    private CarModel carModel;
+    @ManyToOne
+    private CarModel carmodel;
 
     @ManyToOne
     private Customer customer;
+
+    @OneToMany(mappedBy="car", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JsonBackReference(value = "order-car")
+    private List<Order> orderList;
 }

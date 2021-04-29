@@ -34,7 +34,7 @@ public class CarController {
         car.setPlateNumber(newCar.getPlateNumber());
         car.setDescription(newCar.getDescription());
         car.setCustomer(newCar.getCustomer());
-        car.setCarModel(newCar.getCarModel());
+        car.setCarmodel(newCar.getCarmodel());
         carService.save(car);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -28,7 +28,7 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/order")
+    @PutMapping(value = "/orders")
     public ResponseEntity<?> update(@RequestBody Order newOrder) {
         Order order = orderService.find(newOrder.getId());
         order.setIsDone(newOrder.getIsDone());
@@ -39,14 +39,14 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping(value = "/order/{id}")
+    @DeleteMapping(value = "/orders/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Order order = orderService.find(id);
         orderService.delete(order);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/order")
+    @GetMapping(value = "/orders")
     public ResponseEntity<List<Order>> findAll() {
         final List<Order> orderList = orderService.findAll();
 
@@ -55,7 +55,7 @@ public class OrderController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/order/{id}")
+    @GetMapping(value = "/orders/{id}")
     public ResponseEntity<Order> find(@PathVariable(name = "id") Long id) {
         final Order order = orderService.find(id);
 

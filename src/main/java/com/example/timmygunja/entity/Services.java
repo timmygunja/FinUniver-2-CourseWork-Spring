@@ -1,9 +1,11 @@
 package com.example.timmygunja.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -18,4 +20,8 @@ public class Services {
     private String name;
     private String description;
     private String cost;
+
+    @OneToMany(mappedBy="services", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JsonBackReference(value = "order-services")
+    private List<Order> orderList;
 }

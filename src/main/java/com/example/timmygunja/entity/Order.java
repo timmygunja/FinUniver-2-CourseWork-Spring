@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Table(name = "EMPLOYEE")
+@Table(name = "ORDERS")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +20,12 @@ public class Order {
 
     private String isDone;
 
-    @OneToOne
+    @ManyToOne
     public Car car;
 
-    @OneToOne
+    @ManyToOne
     public Employee employee;
 
-    @OneToOne
+    @ManyToOne
     public Services services;
 }
