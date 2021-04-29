@@ -1,9 +1,11 @@
 package com.example.timmygunja.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -18,9 +20,10 @@ public class Car {
 
     private String plateNumber;
     private String description;
-    private String image;
+
+    @OneToOne
+    private CarModel carModel;
 
     @ManyToOne
-    @JoinColumn(name="CARMODEL_ID")
-    private CarModel carModel;
+    private Customer customer;
 }
