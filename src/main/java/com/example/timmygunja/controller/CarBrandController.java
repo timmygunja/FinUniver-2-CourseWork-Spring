@@ -5,6 +5,8 @@ import com.example.timmygunja.entity.CarBrand;
 import com.example.timmygunja.entity.Position;
 import com.example.timmygunja.service.CarBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,8 +50,14 @@ public class CarBrandController {
     }
 
     @GetMapping(value = "/car-brands")
-    public ResponseEntity<List<CarBrand>> findAll() {
+    public ResponseEntity<List<CarBrand>> findAll(String sortBy, String sortDir) {
         final List<CarBrand> carBrandList = carBrandService.findAll();
+
+//        final List<CarBrand> carBrandList = carBrandService.findAll(
+//                PageRequest.of(sortDir.equalsIgnoreCase("asc")
+//                        ? Sort.by(sortBy).ascending()
+//                        : Sort.by(sortBy).descending())
+//        );
 
         return carBrandList != null && !carBrandList.isEmpty()
                 ? new ResponseEntity<>(carBrandList, HttpStatus.OK)

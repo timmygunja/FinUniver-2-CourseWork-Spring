@@ -1,7 +1,6 @@
 package com.example.timmygunja.service;
 
 
-import com.example.timmygunja.entity.Employee;
 import com.example.timmygunja.entity.Position;
 import com.example.timmygunja.repository.PositionRepository;
 import org.springframework.beans.factory.annotation.Autowired;

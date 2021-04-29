@@ -26,13 +26,9 @@ public class Employee {
     private String password;
 
     @ManyToOne
-//    @JoinColumn(name="position_id", referencedColumnName = "id")
-//    @JsonBackReference(value = "employee-position")
     public Position position;
 
 
     @ManyToOne
-//    @JoinColumn(name="privilege_id", referencedColumnName = "id")
-//    @JsonBackReference(value = "employee-privilege")
     public Privilege privilege;
 }

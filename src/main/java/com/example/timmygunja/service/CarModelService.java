@@ -1,9 +1,7 @@
 package com.example.timmygunja.service;
 
 
-import com.example.timmygunja.entity.CarBrand;
 import com.example.timmygunja.entity.CarModel;
-import com.example.timmygunja.entity.Position;
 import com.example.timmygunja.repository.CarModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
