@@ -2,7 +2,6 @@ package com.example.timmygunja.controller;
 
 
 import com.example.timmygunja.entity.Customer;
-import com.example.timmygunja.entity.Employee;
 import com.example.timmygunja.service.CustomerService;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.beans.factory.annotation.Autowired;

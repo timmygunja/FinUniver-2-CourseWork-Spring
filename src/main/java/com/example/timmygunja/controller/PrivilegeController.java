@@ -1,7 +1,6 @@
 package com.example.timmygunja.controller;
 
 
-import com.example.timmygunja.entity.Position;
 import com.example.timmygunja.entity.Privilege;
 import com.example.timmygunja.service.PrivilegeService;
 import org.springframework.beans.factory.annotation.Autowired;

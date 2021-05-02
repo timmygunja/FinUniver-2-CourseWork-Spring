@@ -1,7 +1,6 @@
 package com.example.timmygunja.controller;
 
 
-import com.example.timmygunja.entity.Employee;
 import com.example.timmygunja.entity.Position;
 import com.example.timmygunja.service.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,6 @@ public class PositionController {
         position.setName(newPosition.getName());
         position.setDescription(newPosition.getDescription());
         position.setSalary(newPosition.getSalary());
-//        position.setEmployee(newPosition.getEmployee());
         positionService.save(position);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
